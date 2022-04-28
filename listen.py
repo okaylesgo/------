@@ -1,6 +1,8 @@
 import socket
 import asyncio
 import json
+from IA import IA
+from pong import pong
 port=int(1234)
 Addressplayer = ('0.0.0.0', port)
 serveraddress=('localhost',3000)
@@ -16,10 +18,10 @@ def listen():
                     message = client.recv(2048).decode() 
                     requete=json.loads(message)                 
                     if requete["request"]== "ping": 
-                        #fonction qui renvoie pong
+                        pong()
                         print(requete)
                     elif requete["request"]=='play':
-                        #future fonction pour jouer un coup 
+                        IA(requete['etat'])
                         print(requete)
             except socket.timeout:
                 pass
