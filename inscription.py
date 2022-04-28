@@ -1,14 +1,15 @@
 import socket
 import asyncio
 import json
-port=int(1234)
+import sys
+port=int(sys.argv[1])
 Addressplayer = ('0.0.0.0', port)
 serveraddress=('localhost',3000)
 def inscription():
         print('test')
         with socket.socket() as s:
             s.connect(serveraddress)
-            inscription={"request": "subscribe","port": port,"name":'akachar Ali',"matricules":["20004",'20009']}
+            inscription={"request": "subscribe","port": port,"name":sys.argv[2],"matricules":["20004",sys.argv[3]]}
             message=json.dumps(inscription)
             s.send(message.encode())
             message=s.recv(2048).decode()
