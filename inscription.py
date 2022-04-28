@@ -3,11 +3,11 @@ import asyncio
 import json
 port=int(1234)
 Addressplayer = ('0.0.0.0', port)
-servoraddress=('localhost',3000)
+serveraddress=('localhost',3000)
 def inscription():
         print('test')
         with socket.socket() as s:
-            s.connect(servoraddress)
+            s.connect(serveraddress)
             inscription={"request": "subscribe","port": port,"name":'akachar Ali',"matricules":["20004",'20009']}
             message=json.dumps(inscription)
             s.send(message.encode())
