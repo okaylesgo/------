@@ -22,7 +22,8 @@ async def listen():
                         message='{"response": "pong"}'
                         client.send(message.encode())
                     elif requete["request"]=='play':
-                        IA(requete['etat'])
-                        print(requete)
+                        answer=IA(requete['etat'])
+                        indice={"response": "move",  "move":answer,   "message": "Fun message"}
+                        client.send(json.dumps(indice).encode())
             except socket.timeout:
                 pass
