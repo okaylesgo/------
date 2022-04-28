@@ -4,13 +4,12 @@ import json
 port=int(1234)
 Addressplayer = ('0.0.0.0', port)
 serveraddress=('localhost',3000)
-async def recevoir(): 
+def listen(): 
     with socket.socket() as s:
         s.settimeout(0.1)
         s.bind(Addressplayer)
         s.listen()
         while True:
-            await asyncio.sleep(0)
             try: 
                 client, address = s.accept()
                 with client:
